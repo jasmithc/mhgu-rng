@@ -1,10 +1,9 @@
 # mhxx-rng
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/apmnnn/mhxx-rng/blob/main/mhxx-rng.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jasmithc/mhgu-rng/blob/main/mhxx-rng.ipynb)
 
 > [!NOTE]
 > This is an English translation of [apmnnn/mhxx-rng](https://github.com/apmnnn/mhxx-rng) (MIT License). The documentation has been translated, the code comments are in English, and the notebook's example cell now calls `set_en()` and uses English skill names.
-> The Colab badge above still opens the original repository's notebook, which defaults to Japanese (`set_ja()`). To use the English version, open this copy's `mhxx-rng.ipynb`, or call `set_en()` in the first cell.
 
 
 # Contents

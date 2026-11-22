@@ -1,41 +1,41 @@
-天運の錬金、マカフシギ錬金では、投入するお守りの種類によって排出されるお守りの数が変わります。
+In Halcyon Melding and Juju Melding, the number of charms produced depends on the type of talismans you insert.
 
-マカフシギ錬金におけるレア5〜7のお守り×3のように、基本的には、レア度の高いお守りを投入した方が、より多くのお守りが排出されます。
+As with inserting 3 rarity 5–7 talismans in Juju Melding, inserting higher-rarity talismans generally produces more charms.
 
-このような、レア度の最も高い投入(天運の8〜9ポイントやマカフシギの9ポイント)をランク4とし、レア度の低い投入を順にランク3〜1とします。
+Call the highest-rarity insertion (8–9 points for Halcyon, 9 points for Juju) rank 4, and lower-rarity insertions ranks 3 to 1 in order.
 
-モンスターハンター大辞典wikiより一部引用
+Partly quoted (and translated) from the Monster Hunter Encyclopedia wiki (モンスターハンター大辞典wiki):
 
 https://wikiwiki.jp/nenaiko/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0/%E3%83%9E%E3%82%AB%E9%8C%AC%E9%87%91%E5%B1%8B#w523dadf
 
 ```
-[天運の錬金術]お守りの生成方法
-投入するお守りのレア度に合わせてポイント化
-兵士／闘士･･･1pt
-騎士／城塞･･･2pt
-女王／王／龍･･･3pt
-護石のポイントで生成されるお守りの数量が変化(生成されるお守りはなぞ／光る／古びたお守りからランダム)
-3ポイント･･･1～3個
-4～5ポイント･･･1～4個
-6～7ポイント･･･2～5個
-8～9ポイント･･･2～6個
+[Halcyon Melding] How charms are generated
+Talismans inserted are converted to points according to rarity
+Pawn / Bishop ... 1pt
+Knight / Rook ... 2pt
+Queen / King / Dragon ... 3pt
+The number of charms generated depends on the talisman points (the charms generated are randomly Mystery / Shining / Timeworn)
+3 points ... 1–3 charms
+4–5 points ... 1–4 charms
+6–7 points ... 2–5 charms
+8–9 points ... 2–6 charms
 
-[マカフシギの錬金術]お守りの生成方法
-投入するお守りのレア度に合わせてポイント化
-兵士／闘士･･･1pt
-騎士／城塞･･･2pt
-女王／王／龍･･･3pt
-護石のポイントで生成されるお守りの数量が変化
-3～4ポイント･･･風化0～1、古びた1個
-5ポイント･･･風化0〜1、古びた1～2個
-6～8ポイント･･･風化1～2、古びた1～2個
-9ポイント･･･風化2、古びた1～2個
+[Juju Melding] How charms are generated
+Talismans inserted are converted to points according to rarity
+Pawn / Bishop ... 1pt
+Knight / Rook ... 2pt
+Queen / King / Dragon ... 3pt
+The number of charms generated depends on the talisman points
+3–4 points ... Enduring 0–1, Timeworn 1
+5 points ... Enduring 0–1, Timeworn 1–2
+6–8 points ... Enduring 1–2, Timeworn 1–2
+9 points ... Enduring 2, Timeworn 1–2
 ```
 
-(マカフシギの5ポイントでの数量は、引用元では「風化1、古びた1～2個」となっているが、正しくは「風化0〜1、古びた1～2個」)
+(The source gives the count for Juju at 5 points as "Enduring 1, Timeworn 1–2", but it is actually "Enduring 0–1, Timeworn 1–2".)
 
-マカフシギ錬金で古びたお守りを狙う場合や、天運の錬金を利用する場合、ランクが高い程排出されるお守りの個数の期待値は増えますが、全ての投入フレームで個数が増えるとは限りませんし、減る場合もあります。
+When aiming for Timeworn Charms with Juju Melding, or when using Halcyon Melding, a higher rank increases the expected number of charms produced. But not every insertion frame gives more charms, and some give fewer.
 
-これにより、意図的にランクを下げた方が当たりフレームが増える場合があります。
+Because of this, deliberately lowering the rank can sometimes increase the number of hit frames.
 
-一方、マカフシギ錬金で風化したお守りを狙う場合は、最高ランクの投入が必ず最高個数の排出となり、かつ、ランクによって排出されるお守りのスキルやスロットの値は変わらないため(変わるのは排出される個数のみ)、ランクを下げる必要はありません。
+On the other hand, when aiming for Enduring Charms with Juju Melding, inserting at the highest rank always produces the maximum count. The rank does not change the skills or slots of the charms produced (only how many are produced), so there is no need to lower the rank.

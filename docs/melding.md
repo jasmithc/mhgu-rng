@@ -1,41 +1,41 @@
-ここでは天運の錬金、マカフシギ錬金の個数、お守りの種類を決める方法について記します。
+This page describes how Halcyon Melding and Juju Melding decide how many charms you get, and of which types.
 
-次のような関数を考えます。
+Consider the following function:
 
-与えられた値を65536で割った余りを初期値とする。
+Take the given value modulo 65536 as the initial value.
 
-現在の値が0ならば1にし、現在の値に176を掛け65363で割った余りを次の値とする。
+If the current value is 0, set it to 1; then the next value is the current value × 176 modulo 65363.
 
-与える値をa、値を進める回数をbとしたときの関数の値をrand(a,b)と表します。
-
-
-
-**天運の錬金**
-
-①現在の乱数をwとする。
-
-rand(w,1)を[お守りの個数幅]で割った余りに[お守りの最低個数]を足したものを排出するお守りの個数とする。
-
-(これらの値は投入ランクによって異なる。最高ランクなら、5と2。)
-
-②rand(w,2)を100で割った余りが10未満なら、最初のお守りをなぞのお守りに、55未満なら光るお守りに、85未満なら古びたお守りにする。
-
-85以上ならrand(w,3)を計算し、再び先程と同様に判定し、最初のお守りの種類を決める。85未満になるまでrand(w,◯)の◯を進め、これを繰り返す。
-
-③rand(w,◯)の◯を直前から1進め、②と同様に2番目のお守りの種類を決定する。
-
-④全てのお守りの種類が決定されるまでこれを繰り返す。
-
-⑤乱数を一つ進める。④までで出た結果に従い、連続でお守りを鑑定する。
+With a as the given value and b as the number of times the value is advanced, write the function's value as rand(a,b).
 
 
 
-**マカフシギ錬金**
+**Halcyon Melding**
 
-①現在の乱数をwとする。
+① Let w be the current RNG value.
 
-rand(w,1)を[風化したお守りの個数幅]で割った余りに[風化したお守りの最低個数]を足したものを排出する風化したお守りの個数とする。
+rand(w,1) modulo [charm count range], plus [minimum charm count], is the number of charms produced.
 
-rand(w,2)を[古びたお守りの個数幅]で割った余りに[古びたお守りの最低個数]を足したものを排出する古びたお守りの個数とする。
+(These values depend on the rank inserted. At the highest rank they are 5 and 2.)
 
-②乱数を一つ進める。①で出た結果に従い、風化したお守り→古びたお守りの順で、連続でお守りを鑑定する。
+② If rand(w,2) modulo 100 is less than 10, the first charm is a Mystery Charm; less than 55, a Shining Charm; less than 85, a Timeworn Charm.
+
+If it is 85 or more, calculate rand(w,3) and check again in the same way to decide the first charm's type. Keep advancing the ◯ in rand(w,◯) and repeating until the value is below 85.
+
+③ Advance the ◯ in rand(w,◯) by 1 from where it last stopped, and decide the second charm's type in the same way as ②.
+
+④ Repeat until every charm's type has been decided.
+
+⑤ Advance the RNG by one. Following the results up to ④, appraise the charms one after another.
+
+
+
+**Juju Melding**
+
+① Let w be the current RNG value.
+
+rand(w,1) modulo [Enduring Charm count range], plus [minimum Enduring Charm count], is the number of Enduring Charms produced.
+
+rand(w,2) modulo [Timeworn Charm count range], plus [minimum Timeworn Charm count], is the number of Timeworn Charms produced.
+
+② Advance the RNG by one. Following the results from ①, appraise the charms one after another: Enduring Charms first, then Timeworn Charms.

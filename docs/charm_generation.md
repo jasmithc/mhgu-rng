@@ -1,84 +1,84 @@
-基本的にはMH3Gとほぼ同じです。
+This is basically almost the same as MH3G (Monster Hunter 3 Ultimate).
 
-ただし以下の3点において異なります。
+However, it differs in the following 3 ways:
 
-・使われている乱数
+- The RNG used
 
-・初期乱数
+- The initial RNG state
 
-・マカ錬金での乱数消費量
-
-
-これは次の項で説明します。
+- How many RNG values melding consumes
 
 
-以下にお守りの決定方法を記します。
+These are explained in the next section.
+
+
+The way a charm is generated is described below.
 
 ---
 
-①乱数を一つ進める。
+① Advance the RNG by one.
 
-乱数を第1スキルとなりうるスキルの個数で割った余りを◯とする。第1スキルとなりうるスキルの内、ID順に並べた時に前から◯+1番目のものを第1スキルに決定する。
+Let ◯ be the RNG value modulo the number of skills that can be a first skill. Of the skills that can be a first skill, sorted by ID, the (◯+1)th one becomes the first skill.
 
-②乱数を一つ進める。
+② Advance the RNG by one.
 
-乱数を第1スキルの(最大値 - 最小値 + 1)で割った余りに最小値を足したものを第1スキルのスキルポイントとする。
+The RNG value modulo the first skill's (maximum − minimum + 1), plus the minimum, becomes the first skill's skill points.
 
-③乱数を一つ進める。
+③ Advance the RNG by one.
 
-乱数を100で割った余りがX以上なら第2スキルを付与。
-X未満なら第2スキルは付与しない。⑦に飛ぶ。
+If the RNG value modulo 100 is X or more, a second skill is added.
+If it is less than X, no second skill is added. Jump to ⑦.
 
-(Xはお守りの種類によって異なる。風化したお守りなら、Xは15。)
+(X depends on the charm type. For an Enduring Charm, X is 15.)
 
-④乱数を一つ進める。
+④ Advance the RNG by one.
 
-乱数を第2スキルとなりうるスキルの個数で割った余りを◯とする。第2スキルとなりうるスキルの内、ID順に並べた時に前から◯+1番目のものを第2スキルに決定する。
+Let ◯ be the RNG value modulo the number of skills that can be a second skill. Of the skills that can be a second skill, sorted by ID, the (◯+1)th one becomes the second skill.
 
-マカ錬金の場合、⑥に飛ぶ。
+For melding, jump to ⑥.
 
-⑤乱数を一つ進める。
+⑤ Advance the RNG by one.
 
-乱数を2で割った余りが1なら、第2スキルの値は正となる。
+If the RNG value modulo 2 is 1, the second skill's value is positive.
 
-0なら、負となる。 
+If it is 0, it is negative. 
 
-⑥乱数を一つ進める。
+⑥ Advance the RNG by one.
 
-・⑤で正と決定された場合、もしくはマカ錬金の場合
+- If ⑤ decided positive, or for melding:
 
-乱数を第2スキルの最大値で割った余りに1を足したものを第2スキルのスキルポイントとする。
+The RNG value modulo the second skill's maximum, plus 1, becomes the second skill's skill points.
 
-・⑤で負と決定された場合
+- If ⑤ decided negative:
 
-第2スキルの負の下限を-Aとする
+Let −A be the second skill's negative lower limit.
 
-乱数を第2スキルの(A + 1)で割った余りからAを引いたものを第2スキルのスキルポイントとする。
+The RNG value modulo (A + 1), minus A, becomes the second skill's skill points.
 
-第1スキルと第2スキルが被った場合、もしくは第2スキルが負の0となった場合、第2スキルは無いものとして扱われる。
+If the first and second skills are the same, or the second skill comes out as negative 0, the charm is treated as having no second skill.
 
-⑦乱数を一つ進める。
+⑦ Advance the RNG by one.
 
-どれほどスキルポイントが多いか、という値である「充足値」を決定する。
+Determine the "fill value", which measures how high the skill points are.
 
-第1スキルの最大値をS1,第2スキルの最大値をS2
+Let S1 be the first skill's maximum and S2 the second skill's maximum.
 
-上で決定した第1スキルの値をT1,第2スキルの値をT2とする。
+Let T1 be the first skill's value and T2 the second skill's value decided above.
 
 T1 ÷ S1 × 10 + T2 ÷ S2 × 10
 
-この値を、和を計算してから小数点以下を切り捨てたものを「充足値」とする。
+Compute the sum, then drop the fractional part; the result is the "fill value".
 
-ただし、第2スキルが無い場合や、第1スキルと第2スキルが被っている場合、もしくは第2スキルが負の場合、ここでのT2の値は0とする。
+However, if there is no second skill, the first and second skills are the same, or the second skill is negative, T2 is taken as 0 here.
 
-乱数を100で割った余りを判定値とする。
+The RNG value modulo 100 is the roll value.
 
-2〜20の充足値毎に、判定値とスロット数の対応表があるので、それを参照してスロット数を決定する。
+For each fill value from 2 to 20 there is a table mapping roll values to slot counts; look it up to decide the number of slots.
 
-例えば、充足値が17で、判定値が92の場合、充足値17の対応表は(79,91,98)なので、判定値が91以上98未満、スロット数は2と決定される。
+For example, with a fill value of 17 and a roll value of 92: the table for fill value 17 is (79,91,98), and the roll is at least 91 but below 98, so the charm gets 2 slots.
 
 ---
 
-以上でお守りを決定します。
+That completes the charm.
 
-次のお守りが残っている場合、そのまま再度①から次のお守りを決定します。
+If more charms remain, go back to ① and generate the next charm straight away.

@@ -1,217 +1,219 @@
 ### `ascend()`
 
-乱数を一つ進めます。
+Advances the RNG by one.
 
 
 ### `descend()`
 
-一つ前の乱数が何であったかを計算します。
+Calculates what the previous RNG value was.
 
 
 ### `roll()`
 
-7つ前までの乱数を保持し、乱数を一つ進めます。
+Keeps the last 7 RNG values and advances the RNG by one.
 
 
 ### `init()`
 
-変数を初期化します。
+Initialises the variables.
 
 
 ### `jump(◯)`
 
-乱数位置◯に高速で移動し、roll()を7回行います。
+Moves quickly to RNG position ◯, then calls roll() 7 times.
 
 
 ### `set_ja()`
 
-言語を日本語に設定します。
+Sets the language to Japanese.
 
-set_en()なら英語、set_zh()なら簡体中文に設定されます。
+set_en() sets it to English, and set_zh() to Simplified Chinese.
 
-各スキル名の並びは、ID順になっています。必要なら、Kiranicoなどを参照してください。
+Skill names are listed in ID order. If needed, refer to Kiranico or similar.
 
 
 ### `set_blue()`
 
-風化したお守りを検索するモードに設定します。
+Sets the mode to search for Enduring Charms.
 
-set_red()なら古びたお守り、set_yellow()なら光るお守り、set_white()ならなぞのお守りを検索するモードに設定されます。
+set_red() sets it to Timeworn Charms, set_yellow() to Shining Charms, and set_white() to Mystery Charms.
 
-光るお守りは充足値によって最大スロット数が異なるので注意してください。
+Note that for Shining Charms, the maximum number of slots depends on the fill value.
 
 
 ### ■
 
 ```python
-p = parameter('第1スキル',第1SP,'第2スキル',第2SP,スロット数,'原産地')
+p = parameter('first skill',first_SP,'second skill',second_SP,slots,'origin')
 
-search(検索開始位置,検索数,p)
+search(start_position,count,p)
 ```
 
-指定されたお守りを検索し、乱数位置を表示します。
+Searches for the specified charm and shows its RNG position.
 
-スキル名は3rdのセルに書かれているものを入力してください。スキル名が正しく入力されないとエラーになります。
+Enter skill names exactly as written in the 3rd cell. If a skill name is entered incorrectly, you will get an error.
 
-'原産地'には、マカ錬金なら'マカ'、クエストなら'炭鉱'を入力してください。他言語の場合は、3rdのセルのoriginの要素を入力してください。
+For 'origin', enter 'Melding' for melding or 'Quest' for quests (in Japanese mode these are 'マカ' and '炭鉱'). For other languages, enter an element of `origin` from the 3rd cell.
 
-1000万回のループなら15秒程で終わります。
+A loop of 10 million takes about 15 seconds.
 
-下に時間が表示されますが参考程度に留めておいてください。
+A time is shown underneath, but treat it only as a rough guide.
 
-'第2スキル'を''（空文字列）にすると、第2スキルが無い場合のみを検索します。
+If 'second skill' is '' (an empty string), only charms with no second skill are searched.
 
 ```python
-p = parameter('連撃',4,'',5,3,'マカ')
+p = parameter('Chain Crit',4,'',5,3,'Melding')
 
 search(0,10000,p)
 ```
 
-searchの代わりにsearch_greaterを使うと、指定された第1スキル、第2スキルを持ち、指定された値以上の第1SP、第2SP、スロット数を持つお守りを◯個先の乱数まで検索し、乱数位置とお守りを表示します。
+Using search_greater instead of search searches ◯ RNG values ahead for charms with the specified first and second skills and at least the specified first SP, second SP and slot count, and shows their RNG positions and the charms.
 
-下の「● aim points exist」や◯、Xといった表示は、当たりフレームの有無を表しています。右端の[◯]や[X]は検索中のお守りの位置を表します。
+The "● aim points exist" line and the ◯ and X marks below it show whether there are hit frames. The [◯] or [X] at the right-hand end shows the position of the charm being searched for.
 
-search_greaterで'第2スキル'を''にすると、指定された第1スキルを持ち、指定された値以上の第1SP、スロット数を持つお守りを検索し、乱数位置とお守りを表示します。
+With search_greater, if 'second skill' is '', it searches for charms with the specified first skill and at least the specified first SP and slot count, and shows their RNG positions and the charms.
 
-search_greaterで'第1スキル'を''にすると、指定された第2スキルを持ち、指定された値以上の第2SP、スロット数を持つお守りを検索し、乱数位置とお守りを表示します。
-
-### ■
-
-```python
-search_fill_slot(検索開始位置,検索数,充足値,スロット数,'原産地')
-```
-
-指定された値と同じ充足値、スロット数を持つお守りを検索し、乱数位置とお守りを表示します。
-
-例えば、search_fill_slot(0,1000000,20,3,'マカ')なら、第1SP、第2SP、ともに最大値で、スロット数が3のマカ錬金で出るお守りを0〜100万の範囲で検索します。
-
+With search_greater, if 'first skill' is '', it searches for charms with the specified second skill and at least the specified second SP and slot count, and shows their RNG positions and the charms.
 
 ### ■
 
 ```python
-p = parameter('第1スキル',第1SP,'第2スキル',第2SP,スロット数,'原産地')
-
-show_fast(検索開始位置,検索数,'関数名',p)
+search_fill_slot(start_position,count,fill_value,slots,'origin')
 ```
 
-指定された条件を満たすお守りを検索します。
+Searches for charms with the specified fill value and slot count, and shows their RNG positions and the charms.
 
-search系統の200倍の速度で検索可能です。初回のみ若干起動が遅いです。
-
-検索数に大きすぎる値を入力すると停止しないかもしれません。
-
-'関数名'には、'search'、'search_greater'のいずれかを入力して条件を指定してください。
+For example, search_fill_slot(0,1000000,20,3,'Melding') searches 0 to 1 million for melding charms with both first and second SP at their maximum and 3 slots.
 
 
-### `show_fast_multi(検索開始位置,検索数,お守り1,お守り2,お守り3,…)`
-
-いずれかのお守り以上の条件を持つお守りを検索します。
-
-後ろの部分には、parameter()で設定した、1個以上の好きな数のお守りを入力できます。
-
-お守りはいずれもスキルを2つ持つものを指定してください。
-
-マカで検索するかクエストで検索するかは、最初に引数として入力したお守りで決まります。下の例では、p1が'マカ'なので、他のお守りも'マカ'で検索されます。
-
-show_fast()より少し遅く、お守りの数が増えると更に少し遅くなります。
-
-**使用例**
+### ■
 
 ```python
-p1 = parameter('斬味',5,'痛撃',5,3,'マカ')
-p2 = parameter('斬味',5,'会心',5,3,'マカ')
-p3 = parameter('痛撃',6,'匠　',4,3,'マカ')
-p4 = parameter('痛撃',6,'斬味',5,2,'マカ')
+p = parameter('first skill',first_SP,'second skill',second_SP,slots,'origin')
+
+show_fast(start_position,count,'function_name',p)
+```
+
+Searches for charms that meet the specified conditions.
+
+It searches 200 times faster than the search functions. Only the first run starts up a little slowly.
+
+If you enter too large a count, it may not stop.
+
+For 'function_name', enter either 'search' or 'search_greater' to specify the conditions.
+
+
+### `show_fast_multi(start_position,count,charm1,charm2,charm3,…)`
+
+Searches for charms that meet or exceed the conditions of any of the given charms.
+
+For the trailing arguments you can pass any number (one or more) of charms set up with parameter().
+
+Every charm you specify must have two skills.
+
+Whether it searches melding or quest charms is decided by the first charm argument. In the example below, p1 is 'Melding', so the other charms are also searched as 'Melding'.
+
+It is a little slower than show_fast(), and gets a little slower again as you add charms.
+
+**Example**
+
+```python
+p1 = parameter('Sharpness',5,'Tenderizer',5,3,'Melding')
+p2 = parameter('Sharpness',5,'Critical Up',5,3,'Melding')
+p3 = parameter('Tenderizer',6,'Handicraft',4,3,'Melding')
+p4 = parameter('Tenderizer',6,'Sharpness',5,2,'Melding')
 
 show_fast_multi(0,10**7,p1,p2,p3,p4)
 ```
 
 
-### `around(◯,□,'原産地')`
+### `around(◯,□,'origin')`
 
-乱数位置◯の前後□個のお守りを全て表示します。
+Shows every charm within □ positions either side of RNG position ◯.
 
-◯にはsearch()等で求めたお守りの乱数位置を入力してください。
+For ◯, enter a charm's RNG position found with search() or similar.
 
 
 ### `jujupush(◯,□)`
 
-乱数位置◯、ランク□でマカフシギ錬金をしたときの結果を表示します。
+Shows the result of Juju Melding at RNG position ◯ with rank □.
 
-□を入力しなければ、最高ランクの結果が表示されます。
+If □ is omitted, the result for the highest rank is shown.
 
 
 ### `halcyonpush(◯,□)`
 
-乱数位置◯、ランク□で天運の錬金をしたときの結果を表示します。
+Shows the result of Halcyon Melding at RNG position ◯ with rank □.
 
-□を入力しなければ、最高ランクの結果が表示されます。
+If □ is omitted, the result for the highest rank is shown.
 
 
 ### `sequence_charm(◯,□)`
 
-乱数位置◯から、クエスト報酬で□個同時にお守りを鑑定したときの結果を表示します。
+Shows the result of appraising □ charms at once in the quest rewards, starting from RNG position ◯.
 
 
 ### ■
 
 ```python
-reward_table = {報酬テーブル}
-reward = '獲得した報酬'
+reward_table = {reward table}
+reward = 'rewards obtained'
 
-search_reward(検索開始位置, 検索数, 運気スキルによる閾値, reward, reward_table)
+search_reward(start_position, count, luck_threshold, reward, reward_table)
 ```
 
-採取ツアーで得たクエスト報酬から、クエスト報酬を生成する直前の乱数位置を割り出し表示します。
+Works out the RNG position just before the quest rewards were generated, from the quest rewards you got on a Gathering Tour, and shows it.
 
-報酬生成時には乱数が消費され、例えば採取ツアーでは5〜12個の乱数が、報酬数に応じて追加で消費されていることに注意してください。（報酬数が4,5,6,7,8なら、消費量は5,7,9,11,12）
+Note that generating rewards consumes RNG values; on a Gathering Tour, for example, an extra 5–12 values are consumed depending on the number of rewards. (For 4, 5, 6, 7 or 8 rewards, it consumes 5, 7, 9, 11 or 12.)
 
-報酬が生成される瞬間にタイマーをスタートすれば、search_rewardで出力されたフレームに、そのタイマーの経過時間に相当するフレームと、報酬生成による乱数消費量を足したものが、ゲームで現在進行中の乱数位置となります。
+If you start a timer at the moment the rewards are generated, the RNG position currently in progress in the game is the frame output by search_reward, plus the frames equivalent to the timer's elapsed time, plus the RNG consumed by reward generation.
 
-reward_tableには、そのクエストの報酬テーブルを記入してください。
+In reward_table, enter that quest's reward table.
 
-rewardには、そのクエストで入手した報酬の1段目、最大8個のアイテム名を、空白区切りの文字列で入力してください。
+In reward, enter the item names of the first row of rewards you got from the quest (up to 8 items), as a whitespace-separated string.
 
-運気スキルによる閾値には、運気スキルを発動していない場合は22、幸運を発動している場合は25、強運を発動している場合は28、激運を発動している場合は31を入力してください。
+For the luck threshold, enter 22 with no luck skill, 25 with Good Luck, 28 with Great Luck, or 31 with Amazing Luck.
 
-reward_tableを適切に書き換えれば、他のクエストのクエスト報酬からでも乱数位置を特定できるかもしれません。
+If you rewrite reward_table appropriately, you may be able to find the RNG position from other quests' rewards too.
 
-reward_tableに記入するアイテム名は、利用者が識別できるなら何でも良いですが、reward_tableとrewardで同じ名称を使ってください。
+The item names in reward_table can be anything you can recognise, but use the same names in reward_table and reward. Each name must be a single word with no spaces, because reward is split on whitespace.
 
-検索数が1億なら1秒ほどで終わります。初回のみ若干起動が遅いです。
+A count of 100 million takes about 1 second. Only the first run starts up a little slowly.
 
-**使用例**
+**Example**
 
 ```python
-reward_table = {'謎骨':20,'釣り':40,'生肉':65,'砥石':85,'力餌':90,'重餌':95,'速餌':100}
-reward = '力餌　釣り　生肉　謎骨　謎骨　生肉　釣り'
+reward_table = {'MysteryBone':20,'Fishing':40,'RawMeat':65,'Whetstone':85,'PowerBait':90,'HeavyBait':95,'SpeedBait':100}
+reward = 'PowerBait Fishing RawMeat MysteryBone MysteryBone RawMeat Fishing'
 
 search_reward(0, 10**7, 28, reward, reward_table)
 ```
 
+(Translator's note: the original uses Japanese shorthand labels: 謎骨, 釣り, 生肉, 砥石, 力餌, 重餌, 速餌. The English labels above are literal renderings, not the in-game English item names. Since the labels are only matched against each other, any consistent names work.)
+
 
 ### ■
 
 ```python
-combo = '調合数の記録'
-search_combo(検索開始位置, 検索数, combo)
+combo = 'combination count record'
+search_combo(start_position, count, combo)
 ```
 
-調合による弾所持数の変化から、調合を開始した際の乱数位置を割り出し、そのフレームに調合による乱数進行（調合回数×2）を足したものを表示します。
+Works out the RNG position when you started combining, from how your ammo count changes as you combine items, and shows that frame plus the RNG advance from combining (number of combinations × 2).
 
-調合開始と同時にタイマーをスタートすれば、search_comboで出力されたフレームに、そのタイマーの経過時間に相当するフレームを足したものが、ゲームで現在進行中の乱数位置となります。
+If you start a timer at the moment you start combining, the RNG position currently in progress in the game is the frame output by search_combo plus the frames equivalent to the timer's elapsed time.
 
-'調合数の記録'にはココット村の自宅で、アイルーのルームサービスやオトモがいない状態で、調合成功率100%の状態で、Lv2通常弾を連続調合した際の所持数の変遷を、空白区切りの文字列で入力してください。
+For 'combination count record', go to your house in Kokoto Village, with no Felyne room service or Palico, and a 100% combination success rate. Combine Normal S Lv2 repeatedly and enter how many you hold after each combination, as a whitespace-separated string.
 
-必ずしも0から始め99で終わる必要はありませんが、調合数の記録は最初から最後まで入力してください。
+It doesn't have to start at 0 and end at 99, but enter the record from beginning to end without gaps.
 
-合計60個ほど調合すれば、十分特定できると思います。
+About 60 combined in total should be enough to identify the position.
 
-乱数の不定消費により適切に検索できない場合は、調合数の記録を短くしたり、再度調合した際の記録を入力してください。
+If it can't search properly because of irregular RNG consumption, shorten the record or enter the record from a new round of combining.
 
-検索数が1億なら1秒ほどで終わります。初回のみ若干起動が遅いです。
+A count of 100 million takes about 1 second. Only the first run starts up a little slowly.
 
-**使用例**
+**Example**
 
 ```python
 combo = '''
@@ -225,19 +227,19 @@ search_combo(0, 10**7, combo)
 
 ### `watch(◯)`
 
-フレーム数◯を時間に変換します。
+Converts a frame count ◯ to a time.
 
 
 ### `num_of_charms`
 
-search_greater等でクエスト報酬のお守りを検索した際、クエスト報酬で、この個数だけ同じ種類のお守りを鑑定するときの当たりフレームが表示されます。
+When searching for quest reward charms with search_greater or similar, the hit frames shown are for appraising this many charms of the same type at once in the quest rewards.
 
 
 ### `showallrank`
 
-マカ錬金で、古びたお守りや光るお守りを検索した際、これがTrueなら、全てのランクでの当たりフレームを表示します。Falseなら、最高ランクのみの当たりフレームを表示します。
+When searching Timeworn or Shining Charms for melding, if this is True, hit frames for every rank are shown. If False, only hit frames for the highest rank are shown.
 
 
 ### `showrare`
 
-Trueならお守りのレア度を表示、Falseなら非表示にします。
+If True, the charm's rarity is shown; if False, it is hidden.

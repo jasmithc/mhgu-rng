@@ -1,56 +1,56 @@
-有名なお守り、出やすいお守りというものがあります。
+There are well-known charms, and charms that are easy to get.
 
-そのようなお守りには二つの特徴が考えられます。
+Such charms probably have one of two characteristics.
 
-一つ目は、乱数位置が近いのでどのプレイヤーも遭遇しやすい。
+First, their RNG position is early, so every player is likely to encounter them.
 
-二つ目は、テーブルの合流が起きた先にある。
+Second, they lie past a point where tables merge.
 
 
- [お守りの決定方法](charm_generation.md)で説明したとおり、第2スキルの付与の有無によって、乱数の進行量は4か7かで違ってきます。
+ As explained in [How charms are generated](charm_generation.md), the RNG advances by 4 or 7 depending on whether a second skill is added.
 
-一度に複数のお守りを鑑定したとき、最初のお守りの進行量が4であれば4つ先の乱数を参照し、また次のお守りを生成。次のお守りの進行量が7であれば、7つ先の乱数を参照し、更に次のお守りを生成……と、最初、もしくは途中のどこでも、お守りが確定すればそれ以降のお守りも全て確定します。
+When several charms are appraised at once: if the first charm advances the RNG by 4, the next charm is generated from the RNG value 4 positions ahead. If that charm advances it by 7, the one after is generated from the value 7 positions ahead, and so on. So once any charm is fixed, whether the first one or one partway through, every charm after it is fixed as well.
 
-ここで、次のような特徴を持つお守りを考えます。
+Now consider a charm with the following property:
 
-4つ前の乱数の指すお守りの乱数進行量が4で、7つ前の乱数の指すお守りの乱数進行量が7。
+The charm pointed to by the RNG value 4 positions earlier advances the RNG by 4, and the charm pointed to by the RNG value 7 positions earlier advances it by 7.
 
-この際、二つのそれぞれのテーブルの先にそのお守りがあることになります。
+In this case, the charm lies at the end of both of those tables.
 
-このテーブルが合流した先にあるお守りは、普通のお守りに比べて当たりフレームが多いお守りになります。
-
----
-
-また、上記のお守りとは逆の、孤立お守りというものがあります。
-
-4つ前の乱数の指すお守りの乱数進行量が7(6)で、7(6)つ前の乱数の指すお守りの乱数進行量が4であるようなお守りは、必ず鑑定の最初にしか登場しません。二つ目以降の鑑定結果には登場しません。
-
-このようなお守りは、投入もしくは鑑定のタイミングのフレームを完全に合わせないと入手できません。このため入手難易度が普通のお守りと比べて高くなっています。
-
-風化したお守りなら、13%のお守りがこれに該当します。
+A charm that lies past the point where tables merge has more hit frames than an ordinary charm.
 
 ---
 
-マカフシギ錬金、天運の錬金以外の錬金は、それぞれマカフシギ錬金、天運の錬金とお守りの決定方法は同じですが、お守りを1個しか排出しないという点で異なります。
+There is also the opposite: isolated charms.
 
-当たりフレームが必ず1個なので、天運の錬金で、目当てのお守りの当たりフレームが0個の場合や、高レア度のお守りを消費したい場合に使うとよいです。
+A charm where the charm pointed to by the RNG value 4 positions earlier advances by 7 (6), and the charm pointed to by the RNG value 7 (6) positions earlier advances by 4, only ever appears first in an appraisal. It never appears as the second or later result.
 
----
+You can only get such a charm by hitting the exact frame when inserting or appraising. This makes it harder to get than an ordinary charm.
 
-乱数の取り得る値の組み合わせは莫大なので、恐らく、どんなお守りも生成され得ます。
-
----
-
-スナイプの際、1回ではなく、連続で数回錬金すると、何かの要因でフレームの進行が大きく遅れた場合に備えられるかもしれません。
+For Enduring Charms, 13% of charms are isolated.
 
 ---
 
-セーブデータをロードをするタイミングによって猫飯を、クエストを開始するタイミングによってモンスターの初期位置を、スナイプできるかもしれません。
+The melding options other than Juju Melding and Halcyon Melding decide charms in the same way as Juju Melding and Halcyon Melding respectively, but they only produce one charm.
+
+There is always exactly one hit frame, so they are useful when the charm you want has 0 hit frames with Halcyon Melding, or when you want to use up high-rarity charms.
 
 ---
 
-複数個の本体、ゲームでスナイプを同時に行えば効率は倍になると思います。
+The number of possible combinations of RNG values is enormous, so probably any charm can be generated.
 
 ---
 
-連射コントローラーや、動作を記録できるコントローラーなどを使ってもよいかもしれません。
+When sniping, melding several times in a row rather than once may protect you in case frame progress is delayed significantly for some reason.
+
+---
+
+You might be able to snipe Felyne meal skills through the timing of loading your save, or monsters' starting positions through the timing of starting a quest.
+
+---
+
+Sniping on several consoles/copies of the game at the same time should multiply your efficiency.
+
+---
+
+A turbo controller, or a controller that can record inputs, might also be useful.

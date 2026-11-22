@@ -1,13 +1,13 @@
-充足値を計算する際、商がs/t、(s,tは整数、tは2の冪乗でない)、の形になり、その計算結果がちょうど割り切れて整数になった場合、3DSの計算誤差により、その整数より1小さい値が実際のゲームでの値になるかもしれません。
+When calculating the fill value, if a quotient has the form s/t (s and t integers, t not a power of 2) and the result comes out to exactly an integer, the 3DS's floating-point error might make the actual in-game value 1 less than that integer.
 
-計算結果が5、10、15以外の場合は影響はないかもしれません。
+If the result is anything other than 5, 10 or 15, this may have no effect.
 
-(50/6+60/9=14.999999999→14のようなイメージ)
+(Think of something like 50/6 + 60/9 = 14.999999999 → 14.)
 
-(過去作では、そのように充足値の計算が合わないパターンがあったそう。また、ダメージ計算などでは、その誤差が発揮される例がXXでも確認されている。)
+(Apparently earlier games had patterns where the fill value calculation didn't match like this. Also, examples of this error showing up in damage calculations and similar have been confirmed in XX.)
 
-今の所そのような例は確認できていませんが、もしそのようなパターンが存在し、かつ計算誤差が生じる法則が分かれば、修正するつもりです。
+No such case has been confirmed so far, but if such a pattern exists and the rule behind the error can be found, I plan to fix it.
 
 ---
 
-頑シミュのような、組みたいスキルから必要なお守りの一覧を検索する機能を組み込む事ができれば、show_fast_multi()と組み合わせ、組みたいスキルを入力すれば、それを満たすお守りの乱数位置が表示される、という機能を実装できるかもしれません。
+If I could build in a feature like Gansimu (頑シミュ, an armor-set skill simulator) that searches for the list of charms needed for the skills you want, then combined with show_fast_multi() it might be possible to implement a feature where you enter the skills you want and it shows the RNG positions of charms that satisfy them.

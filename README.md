@@ -2,324 +2,324 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/apmnnn/mhxx-rng/blob/main/mhxx-rng.ipynb)
 
-
-# 目次
-
-1. [はじめに](#はじめに)  
-1. [お守りの決定方法](docs/charm_generation.md) 
-1. [乱数生成式、乱数の仕様](docs/rng.md) 
-1. [関数の説明](docs/functions.md)  
-1. [スナイプ入門1](#スナイプ入門1)  
-1. [スナイプ入門2](#スナイプ入門2)  
-1. [スナイプ実践](#スナイプ実践)
-1. [調合を利用したスナイプ](docs/combo_snipe.md)  
-1. [考察など](docs/analysis.md)  
-1. [天運の錬金、マカフシギ錬金について](docs/melding.md)  
-1. [ランクについて](docs/rank.md)
-1. [クエスト報酬、調合について](docs/reward_combo.md)  
-1. [今後の展望](docs/future.md)
-1. [注意など](#注意など)
-1. [有名なお守り](docs/charms.md)
-1. [更新履歴](docs/history.md) 
-
-## はじめに
-
-これはMHXXでのお守りスナイプ用の乱数解析ツールです。
-
-Googleアカウントを持っていなければ取得し、上のOpen in Colabを開き実行してください。
-
-このプログラムはPython 3.12.13での動作を確認しています。
-
-## [お守りの決定方法](docs/charm_generation.md)
+> [!NOTE]
+> This is an English translation of [apmnnn/mhxx-rng](https://github.com/apmnnn/mhxx-rng) (MIT License). The documentation has been translated, the code comments are in English, and the notebook's example cell now calls `set_en()` and uses English skill names.
+> The Colab badge above still opens the original repository's notebook, which defaults to Japanese (`set_ja()`). To use the English version, open this copy's `mhxx-rng.ipynb`, or call `set_en()` in the first cell.
 
 
-## [乱数生成式、乱数の仕様](docs/rng.md)
+# Contents
+
+1. [Introduction](#introduction)  
+1. [How charms are generated](docs/charm_generation.md) 
+1. [The RNG formula and how the RNG behaves](docs/rng.md) 
+1. [Function reference](docs/functions.md)  
+1. [Sniping basics 1](#sniping-basics-1)  
+1. [Sniping basics 2](#sniping-basics-2)  
+1. [Sniping in practice](#sniping-in-practice)
+1. [Sniping using item combinations](docs/combo_snipe.md)  
+1. [Analysis and observations](docs/analysis.md)  
+1. [Halcyon Melding and Juju Melding](docs/melding.md)  
+1. [Ranks](docs/rank.md)
+1. [Quest rewards and item combinations](docs/reward_combo.md)  
+1. [Future plans](docs/future.md)
+1. [Notes and cautions](#notes-and-cautions)
+1. [Well-known charms](docs/charms.md)
+1. [Changelog](docs/history.md) 
+
+## Introduction
+
+This is an RNG analysis tool for sniping charms in MHXX (Monster Hunter Generations Ultimate).
+
+If you don't have a Google account, create one, then open the "Open in Colab" link above and run the notebook.
+
+This program has been tested with Python 3.12.13.
+
+## [How charms are generated](docs/charm_generation.md)
 
 
-## [関数の説明](docs/functions.md)
+## [The RNG formula and how the RNG behaves](docs/rng.md)
 
 
-## スナイプ入門1
+## [Function reference](docs/functions.md)
+
+
+## Sniping basics 1
 
 > [!NOTE]
-> 調合からの乱数位置の特定が可能になったため、現在はより速く正確な[調合を利用したスナイプ](docs/combo_snipe.md)を試した方がよいかもしれません。
+> It is now possible to determine your RNG position from item combinations, so you may want to try the faster and more accurate [sniping using item combinations](docs/combo_snipe.md) instead.
 
-まずは乱数位置が非常に近い「連撃4痛撃5スロット3」の入手を目指しましょう。
-
-
-この説明ではSwitch版、ダウンロード版の本体保存を使います。
-
-3DS版やSD保存、カセット版でも恐らく可能です。
+Let's start by aiming for a "Chain Crit 4 / Tenderizer 5 / 3 slots" charm, which sits at a very early RNG position.
 
 
-用意するもの
+This guide uses the Switch version, digital download, saved to system memory.
 
-- タイマー
-(小数第二位まで測れるもの)
-
-- 各試行の結果を記録するメモ
+It should also be possible on the 3DS version, with data saved to an SD card, or with a physical cartridge.
 
 
-ここではアプリ「タイマー & ストップウォッチ Plus」を使います。2つのタイマーの切り替えが出来るなら何でもいいです。
+What you need:
+
+- A timer
+(one that measures to hundredths of a second)
+
+- Somewhere to record the result of each attempt
 
 
-まずはココット村でセーブをしておきます。
-
-ホーム画面でゲームMHXXを選択すると同時にタイマースタート。タイマーを見ながら1秒に4回のペースでAを押します。
-
-「continue」を押すと同時にタイマーストップ。その後はAを連打してセーブデータを選択。
-
-一直線にマカ錬金屋に向かい、会話をBでスキップして最速でお守りを投入。
-
-あとは適当なクエストをこなして錬金結果を見ます。
+Here we use the app "Timer & Stopwatch Plus". Anything that lets you switch between two timers will do.
 
 
-ここでは窮地4回復量2スロット0が引けたとします。 
+First, save in Kokoto Village.
+
+Start the timer at the same moment you select MHXX on the Home screen. While watching the timer, press A at a pace of 4 times per second.
+
+Stop the timer at the same moment you press "continue". Then mash A to select your save file.
+
+Go straight to the Melding Pot, skip the dialogue with B, and insert the charms as fast as possible.
+
+Then complete any quest and check the melding result.
 
 
-次にプログラムを開きます。
+Suppose you got a Crisis 4 / Rec Level 2 / 0 slots charm. 
 
-最初に1st,2nd,3rdのセルを実行してください。
 
-そして、1番上のセルの一部を
+Next, open the program.
+
+First, run the 1st, 2nd and 3rd cells.
+
+Then change part of the top cell to
 
 ```python
-p = parameter('窮地',4,'回量',2,0,'マカ')
+p = parameter('Crisis',4,'Rec Level',2,0,'Melding')
 
 search(0,10000,p)
 
-#around(4723,60,'マカ')
+#around(4723,60,'Melding')
 
 #watch(4723 - 1717)
 ```
 
-と書き換えて実行してください。
+and run it.
 
-スキル名は3rdのセルを参照してください。第2スキルが無い場合は''（空文字列）を入力してください。行の先頭に\#を付けるとその行は実行されません。
+See the 3rd cell for skill names. If there is no second skill, enter '' (an empty string). Lines starting with \# are not executed.
 
-0〜10000フレームのマカ錬金のお守りを検索し、このお守りは1725フレーム目のお守りであることがわかります。
+This searches the melding charms in frames 0–10000, and shows that this charm is the charm at frame 1725.
 
-次にセルを
+Next, change the cell to
 
 ```python
-p = parameter('窮地',4,'回量',2,0,'マカ')
+p = parameter('Crisis',4,'Rec Level',2,0,'Melding')
 
 #search(0,10000,p)
 
-around(1740,60,'マカ')
+around(1740,60,'Melding')
 
 #watch(4723 - 1717)
 ```
 
-と書き換えて実行してください。
-1740フレーム目のマカ錬金でのお守りとその前後60フレームのお守りが全て表示されます。
+and run it.
+This shows the melding charm at frame 1740 and every charm within 60 frames either side of it.
 
-これを基準に自分の平均値を探っていきます。
-
-
-ホームに戻りゲームを終了し、上のお守りの鑑定を10〜30回ほど繰り返してください。
-
-以下が注意点・コツとなります。
+Use this as a reference point to work out your own average.
 
 
-タイトル画面で1秒に4回のペースで押すことで、(Switchの場合)13.00秒付近でcontinueを押せます。
+Go back to the Home screen, close the game, and repeat the charm appraisal above about 10–30 times.
 
-continueを押すと、非常に不安定な量の乱数が進行します。
-
-しかし、近いフレームであれば、同じ乱数位置に着地します。
-
-なので、数フレームのズレは気にしなくてもいいです。
-
-また、continueを押した時の乱数の進行量の多寡は押すタイミングの早さとはあまり関係がありません。
-
-より早い段階でcontinueを押したにも関わらず、より多くの進行量、より後ろの乱数に着地することもあるということを心に留めておいてください。
+Notes and tips:
 
 
-また、村に出てからの動きは、とにかくマカ錬金までの経過フレーム≒乱数進行量を一定化することを狙いとしています。
+By pressing A 4 times per second on the title screen, you can (on Switch) press continue at around 13.00 seconds.
 
-最速で錬金すればブレは少なくなるはずです。
+Pressing continue advances the RNG by a very unstable amount.
 
+However, if you press it on nearby frames, you will land on the same RNG position.
 
-総じて、乱数のブレを少なくすることを意識して行ってください。
+So you don't need to worry about being a few frames off.
 
+Also, how far the RNG advances when you press continue has little to do with how early you press it.
 
-タイマーを押し、ゲームを開始してcontinueを押すまでの間はゲーム画面を見ずタイマーのみを見た方が一定化しやすいと思います。
-
-
-事前にストップウォッチなどを使い、ブレを少なく丁度の時間で止める練習や、30F、15F等の感覚をタイマー無しで測る練習をしてもいいかもしれません。
-
-
-## スナイプ入門2
-
-10〜30回ほど錬金を行い、ブレの存在や自分の基準を見つけられたら、次は連撃4痛撃5スロット3を狙っていきます。
+Keep in mind that you can press continue earlier and still get a larger advance, landing on a later RNG position.
 
 
-まず、最初の基準を1717としてみます。
+The movement after you enter the village aims to keep the number of frames until the melding (≈ the amount the RNG advances) constant.
 
-次に、セルを
+Melding as fast as possible should reduce variation.
+
+
+Overall, focus on reducing the variation in RNG advance.
+
+
+From pressing the timer until pressing continue, it is probably easier to stay consistent if you watch only the timer, not the game screen.
+
+
+It may help to practise stopping a stopwatch at an exact time with little variation beforehand, or to practise sensing 30F, 15F and so on without a timer.
+
+
+## Sniping basics 2
+
+Once you have done about 10–30 melds and found the variation and your own baseline, the next target is Chain Crit 4 / Tenderizer 5 / 3 slots.
+
+
+First, take 1717 as the initial baseline.
+
+Next, change the cell to
 
 ```python
-p = parameter('連撃',4,'痛撃',5,3,'マカ')
+p = parameter('Chain Crit',4,'Tenderizer',5,3,'Melding')
 
 search(0,10000,p)
 
-#around(1740,60,'マカ')
+#around(1740,60,'Melding')
 
 #watch(4723 - 1717)
 ```
 
-と書き換え実行してください。
+and run it.
 
-連撃4痛撃5スロット3は4723フレーム目にあることがわかります。
+This shows that Chain Crit 4 / Tenderizer 5 / 3 slots is at frame 4723.
 
-そして、セルで
+Then run the cell with
 
 ```python
-p = parameter('連撃',4,'痛撃',5,3,'マカ')
+p = parameter('Chain Crit',4,'Tenderizer',5,3,'Melding')
 
 #search(0,10000,p)
 
-#around(1740,60,'マカ')
+#around(1740,60,'Melding')
 
 watch(4723 - 1717)
 ```
 
-を実行します。
+The result is 1m 40s 6f, that is, 1 minute 40.20 seconds.
 
-1m 40s 6f、つまり、1分40.20秒
+This is how long you wait on the title screen.
 
-これがタイトル画面で待つ時間になります。
-
-次に、セルで
+Next, run the cell with
 
 ```python
-p = parameter('連撃',4,'痛撃',5,3,'マカ')
+p = parameter('Chain Crit',4,'Tenderizer',5,3,'Melding')
 
 #search(0,10000,p)
 
-around(4723,60,'マカ')
+around(4723,60,'Melding')
 
 #watch(4723 - 1717)
 ```
 
-と実行します。
-
-連撃4痛撃5スロット3の周りのお守りが表示されます。
+This shows the charms around Chain Crit 4 / Tenderizer 5 / 3 slots.
 
 
-最初と同様に、ホーム画面でゲームを選択と同時にタイマースタート、1秒に4回のペースでAを押します。
+As before, start the timer at the same moment you select the game on the Home screen, and press A 4 times per second.
 
-そして今度はcontinueを押し、最速でセーブデータの上でAを押すと同時に1個目のタイマーを停止、2個目のタイマーを始動させます。
+This time, press continue, and at the same moment you press A on your save file (as fast as possible) stop the first timer and start the second.
 
-ここまでゲーム画面を見ずにタイマーのみを見て行います。
+Up to this point, watch only the timer, not the game screen.
 
-2個目のタイマーが1:40.20になるタイミングでAを押し、タイマーストップ。セーブデータをロード。
+When the second timer reaches 1:40.20, press A and stop the timer. Your save file loads.
 
-最初と同様に最速でマカ錬金をします。
-
-
-これを何度か繰り返してください。
-
-恐らく最初は0.数秒目的のお守りとずれていると思います。
-
-数回やってズレを体感したら、ロードするタイミングを微調整してください。
-
-最初は20〜30回ほどでスナイプできると思います。
+As before, do the melding as fast as possible.
 
 
-continueを押すタイミングを間違えている事がタイマーから分かれば、その時点でやり直すことを勧めます。
+Repeat this a few times.
 
-途中で少し操作をミスしたり、経路やマカ錬金屋に話しかける距離を間違えたと思ったら、臨機応変にタイミングを調整してみてください。
+At first, you will probably be a few tenths of a second away from the target charm.
+
+After a few attempts, once you have a feel for the offset, fine-tune when you load.
+
+The first snipe should take about 20–30 attempts.
 
 
-## スナイプ実践
+If the timer shows that you pressed continue at the wrong moment, it's best to restart right away.
 
-スナイプに成功したら連撃4痛撃5スロット3を5個集めるまで繰り返してください。
+If you make a small mistake partway through, or think you took the wrong route or talked to the Melding Pot from the wrong distance, adjust your timing accordingly.
 
-ブレの安定化に慣れてください。
 
-慣れれば5〜7回に1度ほどの確率でスナイプできます。
+## Sniping in practice
 
-5回のスナイプでデータは集まっているはずなので、今度はその時間を基準にします。
+Once a snipe succeeds, repeat until you have collected 5 Chain Crit 4 / Tenderizer 5 / 3 slots charms.
 
-次に、自分の欲しかったお守りをsearch()、watch()、around()してください。
+Get used to keeping the variation stable.
 
-たとえば、痛撃6達人10スロット3なら、
+With practice you can snipe about 1 in every 5–7 attempts.
+
+After 5 snipes you should have enough data, so use that time as your new baseline.
+
+Next, use search(), watch() and around() for the charm you actually want.
+
+For example, for Tenderizer 6 / Expert 10 / 3 slots,
 
 ```python
-p = parameter('痛撃',6,'達人',10,3,'マカ')
+p = parameter('Tenderizer',6,'Expert',10,3,'Melding')
 
 search(0,1000000,p)
 ```
 
-により、296260フレーム目にあることがわかります。
+shows that it is at frame 296260.
 
-連撃4痛撃5スロット3(4723フレーム目)との差は、
+The difference from Chain Crit 4 / Tenderizer 5 / 3 slots (frame 4723) is
 
 ```python
 watch(296260 - 4723)
 ```
 
-とし、2h 41m 57s 27f、2時間41分57.9秒。
+which gives 2h 41m 57s 27f, or 2 hours 41 minutes 57.9 seconds.
 
-そして、周囲のお守りを、
+Then check the surrounding charms with
 
 ```python
-around(296260,60,'マカ')
+around(296260,60,'Melding')
 ```
 
-で確認します。6つ前のお守りがスキルを二つ持つので孤立お守りではありません。
+The charm 6 positions earlier has two skills, so this is not an isolated charm.
 
-連撃4痛撃5スロット3の時と同様にcontinueを押し、連撃4痛撃5スロット3の待ち時間に先程計算した時間を足したものだけ待ちます。
+Press continue just as you did for Chain Crit 4 / Tenderizer 5 / 3 slots, and wait for the Chain Crit 4 / Tenderizer 5 / 3 slots waiting time plus the time you just calculated.
 
-待っている間はゲームを充電しておき、Switchなら自動スリープをオフにしておきましょう。
+While waiting, keep the console charging, and on Switch turn off auto-sleep.
 
-どの時間にゲームを覗けばいいのか計算しておくといいです。
+It helps to work out in advance when you need to check on the game.
 
-マカ錬金を行う所も前回と同じです。
-
-
-## [調合を利用したスナイプ](docs/combo_snipe.md)
+The melding is done the same way as before.
 
 
-## [考察など](docs/analysis.md)
+## [Sniping using item combinations](docs/combo_snipe.md)
 
 
-## [天運の錬金、マカフシギ錬金について](docs/melding.md)
+## [Analysis and observations](docs/analysis.md)
 
 
-## [ランクについて](docs/rank.md)
+## [Halcyon Melding and Juju Melding](docs/melding.md)
 
 
-## [クエスト報酬、調合について](docs/reward_combo.md)
+## [Ranks](docs/rank.md)
 
 
-## [今後の展望](docs/future.md)
+## [Quest rewards and item combinations](docs/reward_combo.md)
 
 
-## 注意など
-
-熱による負荷や、バックグラウンドでのゲームソフトのダウンロードなどにより、フレームの進行が遅れる可能性があります。
-
-(1秒で30F未満しか経過しない、など)
-
-他のソフトをダウンロードをしないようにしたり、夏場に放置する場合は扇風機などで本体の温度を適切に下げた方が良いかもしれません。
-
-また、知らない間に本体や他のゲームの更新データがダウンロードされ、負荷になる可能性を考えると、機内モードをオンにしておいた方が良いかもしれません。
+## [Future plans](docs/future.md)
 
 
-このプログラムは完全にゲームの動作を解析して作っている訳ではないので、再現不足により実際のゲームの結果とは異なる結果が表示されるかもしれません。
-また、プログラムを組むに当たっての人為的ミスが無い保証もありません。
-自己責任で利用してください。
+## Notes and cautions
+
+Load from heat, or game software downloading in the background, may cause frames to advance more slowly.
+
+(For example, fewer than 30F passing in one second.)
+
+It may be best to avoid downloading other software, and if you leave the console running in summer, to keep it at a suitable temperature with a fan or similar.
+
+Also, since system or other game updates might download without you noticing and add load, it may be best to turn on airplane mode.
 
 
-Colabでは出力が5000行を超える場合、古い方から切り捨てて表示されます。多くの結果を出力したい場合は、小分けにするなどして工夫してください。
+This program was not built from a complete analysis of the game's behaviour, so it may show results that differ from the actual game where the behaviour has not been fully reproduced.
+There is also no guarantee that the program is free of human error.
+Use it at your own risk.
 
 
-より高度な機能を使いたい場合、[関数の説明](docs/functions.md)を読んでください。
+In Colab, if the output exceeds 5000 lines, the oldest lines are cut off. If you want to output many results, split them into smaller batches.
 
 
-## [有名なお守り](docs/charms.md)
+If you want to use more advanced features, read the [function reference](docs/functions.md).
 
 
-## [更新履歴](docs/history.md)
+## [Well-known charms](docs/charms.md)
+
+
+## [Changelog](docs/history.md)

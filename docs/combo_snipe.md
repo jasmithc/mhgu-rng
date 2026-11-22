@@ -1,45 +1,45 @@
-ここでは、調合から現在の乱数位置を把握し、スナイプを行う方法について解説します。
+This page explains how to find your current RNG position from item combinations and use it to snipe.
 
-スナイプ入門で解説した方法よりも速く、正確にスナイプが可能です。
-
----
-
-前準備として、オトモを連れているならば外し、ルームサービスをモガの村の看板娘にしてください。手持ちのアイテムには、調合書①入門編と、十分な数のカラの実、ハリの実を入れてください。それらを済ませたら、ココット村でセーブをしてください。
-
-また、Switchの30秒録画を使用するため、アルバムが満杯でない事を確認しておいてください。
+It lets you snipe faster and more accurately than the method in "Sniping basics".
 
 ---
 
+As preparation, remove your Palico if you have one with you, and set your room service to the Moga Village receptionist (モガの村の看板娘). In your item pouch, carry Combo Book 1 and plenty of Husk Berries and Needleberries. Once that's done, save in Kokoto Village.
 
-タイトル画面でcontinueを押すたびに700フレームほど乱数が進行することを利用し、セーブデータをロードした際、目標の乱数位置より30秒以上手前でゲームを開始するように調整してください。
+You will also use the Switch's 30-second video capture, so make sure your Album is not full.
 
-目指すお守りの乱数位置が近い場合や、待ち時間を短縮しなくてもよい場合、待機のみで調整してもよいです。
+---
 
-たとえば、今回は、連撃4痛撃5スロット3を狙うとします。
 
-ゲームを開始してcontinueを4回押した後、すぐにセーブデータをロードしてください。
+Each press of continue on the title screen advances the RNG by about 700 frames. Use this so that when you load your save, the game starts at least 30 seconds before the target RNG position.
 
-その後、自宅へ向かい、スタートでメニューを開き、タイマーを起動すると同時に「調合する」を長押しし、Lv2通常弾を調合。
+If the target charm's RNG position is close, or you don't mind a longer wait, you can adjust by waiting alone.
 
-Lv2通常弾が50個ほど調合できたら、Switchの録画機能で30秒録画をし、ホームボタンを押すと同時にタイマーを一時停止。
+For example, say the target this time is Chain Crit 4 / Tenderizer 5 / 3 slots.
 
-ここでプログラムを開いてください。
+Start the game, press continue 4 times, then load your save straight away.
 
-スナイプするお守りの位置がわかっているなら、今回は上の方のコードは必要無いのでコメントアウトしておきます。
+Then go to your house, open the menu with Start, and at the same moment you start the timer, hold down "Combine" and combine Normal S Lv2.
+
+Once you have combined about 50 Normal S Lv2, capture a 30-second video with the Switch's capture function, and pause the timer at the same moment you press the Home button.
+
+Now open the program.
+
+If you already know the position of the charm you want to snipe, you don't need the code at the top this time, so comment it out.
 
 ```python
 
-p = parameter('連撃',4,'痛撃',5,3,'マカ')
+p = parameter('Chain Crit',4,'Tenderizer',5,3,'Melding')
 
 #search(0,10000,p)
 
-#around(4723,60,'マカ')
+#around(4723,60,'Melding')
 
 #watch(4723 - 1717)
 
 ```
 
-次に、アルバムより先程録画した動画を確認し、弾所持数の変化をcomboに入力して実行します。
+Next, watch the video you just captured in the Album, enter the changes in your ammo count into combo, and run it.
 
 ```python
 
@@ -51,13 +51,13 @@ search_combo(0,10000,combo)
 
 #watch(4723 - 3800)
 
-#around(4723,60,'マカ')
+#around(4723,60,'Melding')
 
 ```
 
-0〜10000フレームの中で、この調合数の列に一致する乱数を検索し、調合を開始した時点での乱数位置は3831とわかりました。
+This searches frames 0–10000 for RNG values that match this sequence of combination counts, and finds that the RNG position when combining started was 3831.
 
-次に、
+Next, run
 
 ```python
 
@@ -69,19 +69,19 @@ combo = '''
 
 watch(4723 - 3831)
 
-#around(4723,60,'マカ')
+#around(4723,60,'Melding')
 
 ```
 
-と実行し、目標の乱数位置と調合開始時の乱数位置の差を、時間に変換して求めます。
+to convert the difference between the target RNG position and the RNG position when combining started into a time.
 
-29s22f、つまり、29.73秒
+29s 22f, that is, 29.73 seconds.
 
-Switchのホーム画面から、ゲームに戻ると同時にタイマーを再開し、走らず歩いてルームサービスに近づき、マカ錬金を行える状態にしておきます。
+Resume the timer at the same moment you return to the game from the Switch Home screen. Walk (don't run) up to the room service and get ready to meld.
 
-先程求めた時刻になった瞬間にお守りを投入し、タイマーを停止してください。
+Insert the charms at the exact moment the timer reaches the time you just calculated, and stop the timer.
 
-次に、
+Next, run
 
 ```python
 
@@ -93,15 +93,15 @@ combo = '''
 
 #watch(4723 - 3831)
 
-around(4723,60,'マカ')
+around(4723,60,'Melding')
 
 ```
 
-と実行し、適当なクエストをこなして錬金結果を確認し、先程の計算時刻、タイマーの時刻、目標のお守りとのズレを記録し、これを繰り返してください。
+then complete any quest and check the melding result. Record the calculated time, the timer's time, and how far you were from the target charm, and repeat.
 
-恐らく数回で成功すると思います。成功したら、慣れるまで何度も繰り返してください。
+You will probably succeed within a few attempts. Once you succeed, repeat it many times until you are comfortable.
 
 
-他のお守りを狙う場合、連撃4痛撃5スロット3以外のある程度離れたお守りを何度かスナイプし、双方の乱数位置の差とcontinueの押下回数の差より、遠くのお守りを狙うのに必要な押下回数を考えるとよいです。
+To aim for other charms, snipe a charm reasonably far from Chain Crit 4 / Tenderizer 5 / 3 slots a few times. Then, from the difference between the two RNG positions and the difference in the number of continue presses, work out how many presses you need to aim for distant charms.
 
-あるいは便宜的に、continueループの周期フレーム数に702を足したものを1ループ当たりの乱数進行量とし、目標と基準の差をその値で割った分だけ押下回数を増やすといいかもしれません。
+Alternatively, as a shortcut, treat the period (in frames) of the continue loop plus 702 as the RNG advance per loop, and increase the number of presses by the difference between the target and the reference divided by that value.

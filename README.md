@@ -5,6 +5,9 @@
 > [!NOTE]
 > This is an English translation of [apmnnn/mhxx-rng](https://github.com/apmnnn/mhxx-rng) (MIT License). The documentation has been translated, the code comments are in English, and the notebook's example cell now calls `set_en()` and uses English skill names.
 
+> [!TIP]
+> **On a Mac?** [MHGU Charms RNG](https://github.com/jasmithc/mhgu-rng-app) is a native macOS app version of this tool. It needs no Python or Colab, and adds a snipe timer (continue-cycle calculator, 60 BPM counter, stopwatch and final countdown).
+
 
 # Contents
 
